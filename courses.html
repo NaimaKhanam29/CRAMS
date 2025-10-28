@@ -11,10 +11,11 @@
 </head>
 
 <body class="bg-blue-50 min-h-screen flex flex-col">
-  <!-- Navbar -->
+
+  <!-- Common Navbar -->
   <nav class="bg-blue-600 text-white p-4 flex justify-between items-center shadow-md">
-    <div class="font-bold text-2xl">CRAMS</div>
-    <div class="space-x-6 text-sm md:text-base">
+    <div class="font-bold text-2xl tracking-wide">CRAMS</div>
+    <div class="hidden md:flex space-x-6 text-sm md:text-base">
       <a href="index.html" class="hover:text-gray-200">Home</a>
       <a href="student.html" class="hover:text-gray-200">Student</a>
       <a href="advisor.html" class="hover:text-gray-200">Advisor</a>
@@ -23,7 +24,7 @@
   </nav>
 
   <!-- Main Content -->
-  <div class="p-6 max-w-5xl mx-auto flex-1">
+  <main class="p-6 max-w-5xl mx-auto flex-1">
     <h2 class="text-3xl font-bold text-blue-700 mb-6 text-center">Available Courses</h2>
 
     <!-- Search Bar -->
@@ -102,7 +103,36 @@
 
     <!-- Confirmation message -->
     <p id="message" class="text-center mt-6 font-semibold text-lg"></p>
-  </div>
+  </main>
+
+  <!--  Footer -->
+  <footer class="bg-blue-700 text-white mt-auto">
+    <div class="max-w-7xl mx-auto px-6 py-8 grid md:grid-cols-3 gap-8 text-center md:text-left">
+      <div>
+        <h3 class="text-xl font-bold mb-3">CRAMS</h3>
+        <p class="text-sm text-blue-100">
+          Course Registration and Advising Management System — designed to simplify academic planning and communication between students and advisors.
+        </p>
+      </div>
+      <div>
+        <h4 class="text-lg font-semibold mb-3">Quick Links</h4>
+        <ul class="space-y-2 text-sm">
+          <li><a href="student.html" class="hover:underline hover:text-gray-200">Student Dashboard</a></li>
+          <li><a href="advisor.html" class="hover:underline hover:text-gray-200">Advisor Panel</a></li>
+          <li><a href="courses.html" class="hover:underline hover:text-gray-200">Available Courses</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="text-lg font-semibold mb-3">Contact Us</h4>
+        <p class="text-sm text-blue-100">Email: support@crams.edu</p>
+        <p class="text-sm text-blue-100">Phone: +880 1234 567890</p>
+        <p class="text-sm text-blue-100">Dhaka, Bangladesh</p>
+      </div>
+    </div>
+    <div class="bg-blue-800 py-3 text-center text-sm text-blue-200">
+      © 2025 CRAMS — All Rights Reserved
+    </div>
+  </footer>
 
   <script>
     // Filter courses in search
@@ -110,7 +140,6 @@
       const input = document.getElementById("searchInput").value.toUpperCase();
       const table = document.getElementById("courseTable");
       const rows = table.getElementsByTagName("tr");
-
       for (let i = 1; i < rows.length; i++) {
         let td = rows[i].getElementsByTagName("td");
         let txtValue = "";
@@ -129,5 +158,6 @@
       setTimeout(() => msg.textContent = "", 4000);
     }
   </script>
+
 </body>
 </html>

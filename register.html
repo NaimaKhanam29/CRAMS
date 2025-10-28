@@ -100,12 +100,12 @@
       const message = document.getElementById("message");
 
       if (!role) {
-        message.textContent = "⚠️ Please select your role.";
+        message.textContent = " Please select your role.";
         message.className = "text-red-600 font-semibold mt-4 text-center";
         return;
       }
 
-      message.textContent = "✅ Registration successful! Redirecting to login...";
+      message.textContent = " Registration successful! Redirecting to login...";
       message.className = "text-green-600 font-semibold mt-4 text-center";
 
       setTimeout(() => {
