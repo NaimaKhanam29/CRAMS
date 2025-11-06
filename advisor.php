@@ -1,3 +1,11 @@
+<?php 
+    session_start();
+    if(isset($_SESSION['user_type']) && $_SESSION['user_type'] != 'advisor'){
+        header("Location: login.php");
+    }
+
+    require 'php/dbFiles/database_connection.php';
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -19,7 +27,7 @@
       <a href="courses.html" class="hover:text-gray-200">Courses</a>
     </div>
     <div>
-      <a href="index.html" class="btn btn-sm bg-red-500 border-none">Logout</a>
+      <a href="php/logout.php" class="btn btn-sm bg-red-500 border-none">Logout</a>
     </div>
   </nav>
 

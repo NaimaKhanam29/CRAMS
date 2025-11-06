@@ -1,3 +1,6 @@
+<?php
+    require 'php/dbFiles/database_connection.php';
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -22,7 +25,7 @@
     </div>
 
     <div class="flex space-x-4 text-sm md:text-base">
-      <a href="login.html" class="hover:text-gray-300 font-semibold">Login</a>
+      <a href="login.php" class="hover:text-gray-300 font-semibold">Login</a>
       <a href="register.html" class="hover:text-gray-300">Register</a>
     </div>
   </nav>

@@ -1,3 +1,6 @@
+<?php
+  session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -31,18 +34,18 @@
       <h1 class="text-3xl font-bold text-center text-blue-700 mb-2">Welcome Back</h1>
       <p class="text-center text-gray-500 mb-6">Login to your CRAMS account</p>
 
-      <form onsubmit="return loginUser(event)" class="space-y-5">
+      <form action="php/login_user.php" class="space-y-5" method="post">
         <div>
-          <label class="block text-gray-700 font-medium mb-2">User ID</label>
-          <input type="text" id="userid" class="input input-bordered w-full focus:outline-none focus:ring-2 focus:ring-blue-400" placeholder="e.g. student1" required>
+          <label class="block text-gray-700 font-medium mb-2">Email</label>
+          <input type="email" name="email" id="userid" class="input input-bordered w-full focus:outline-none focus:ring-2 focus:ring-blue-400" placeholder="e.g. jhon@exm.com" required>
         </div>
 
         <div>
           <label class="block text-gray-700 font-medium mb-2">Password</label>
-          <input type="password" id="password" class="input input-bordered w-full focus:outline-none focus:ring-2 focus:ring-blue-400" placeholder="Enter password" required>
+          <input type="password" name="password" id="password" class="input input-bordered w-full focus:outline-none focus:ring-2 focus:ring-blue-400" placeholder="Enter password" required>
         </div>
 
-        <button class="btn btn-primary w-full text-lg font-semibold">Login</button>
+        <button type="submit" class="btn btn-primary w-full text-lg font-semibold">Login</button>
       </form>
 
       <p class="text-sm text-center text-gray-500 mt-6">
@@ -52,7 +55,7 @@
   </div>
 
   <!--  Script -->
-  <script>
+  <!-- <script>
     function loginUser(e) {
       e.preventDefault();
       const id = document.getElementById("userid").value.toLowerCase();
@@ -67,7 +70,7 @@
         alert("Invalid ID. Use: student1, advisor1, or admin1");
       }
     }
-  </script>
+  </script> -->
 
 </body>
 </html>
