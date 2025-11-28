@@ -1,12 +1,3 @@
-<?php 
-    session_start();
-    if(isset($_SESSION['user_type']) && $_SESSION['user_type'] != 'student'){
-        header("Location: login.php");
-    }
-
-    require 'php/dbFiles/database_connection.php';
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -19,7 +10,7 @@
 </head>
 <body class="bg-blue-50 min-h-screen flex flex-col">
 
-  <!--  Common Navbar -->
+  <!-- Navbar -->
   <nav class="bg-blue-600 text-white p-4 flex justify-between items-center shadow-md">
     <div class="font-bold text-2xl tracking-wide">CRAMS</div>
     <div class="hidden md:flex space-x-6 text-sm md:text-base">
@@ -29,11 +20,11 @@
       <a href="courses.html" class="hover:text-gray-200">Courses</a>
     </div>
     <div>
-      <a href="php/logout.php" class="btn btn-sm bg-red-500 border-none">Logout</a>
+      <a href="logout.html" class="btn btn-sm bg-red-500 border-none">Logout</a>
     </div>
   </nav>
 
-  <!--  Dashboard -->
+  <!-- Dashboard -->
   <main class="p-8 space-y-8 flex-1">
     <h2 class="text-2xl font-semibold text-blue-700 mb-4">Student Dashboard</h2>
 
@@ -41,24 +32,20 @@
       <div class="bg-white p-6 rounded-xl shadow-lg">
         <h3 class="text-lg font-bold mb-3 text-blue-700">Registered Courses</h3>
         <ul id="registeredList" class="list-disc list-inside text-gray-700">
-          <li>CS101 - Intro to Programming</li>
-          <li>CS201 - Data Structures</li>
-          <li>CS301 - Database Systems</li>
-          <li>CS401 - Operating Systems</li>
+          <!-- Dynamic content will load here -->
         </ul>
       </div>
 
       <div class="bg-white p-6 rounded-xl shadow-lg">
-        <h3 class="text-lg font-bold mb-3 text-blue-700"> Completed Courses</h3>
+        <h3 class="text-lg font-bold mb-3 text-blue-700">Completed Courses</h3>
         <ul id="completedList" class="list-disc list-inside text-gray-700">
-          <li>CS101 - Intro to Programming</li>
-          <li>CS301 - Database Systems</li>
+          <!-- Dynamic content will load here -->
         </ul>
       </div>
     </div>
 
     <div class="bg-white p-6 rounded-xl shadow-lg">
-      <h3 class="text-lg font-bold mb-3 text-blue-700"> Apply for New Course Registration</h3>
+      <h3 class="text-lg font-bold mb-3 text-blue-700">Apply for New Course Registration</h3>
       <select id="courseSelect" class="select select-bordered w-full max-w-xs">
         <option disabled selected>Choose a course to apply</option>
         <option>CS501 - Artificial Intelligence</option>
@@ -70,7 +57,7 @@
     </div>
 
     <div class="bg-white p-4 rounded-xl shadow-lg max-w-xs mx-auto">
-      <h3 class="text-md font-bold mb-3 text-blue-700 text-center"> Course Completion Overview</h3>
+      <h3 class="text-md font-bold mb-3 text-blue-700 text-center">Course Completion Overview</h3>
       <div class="w-40 h-40 mx-auto">
         <canvas id="courseChart"></canvas>
       </div>
@@ -105,28 +92,64 @@
   </footer>
 
   <script>
-    const registeredCourses = ["CS101", "CS201", "CS301", "CS401"];
-    const completedCourses = ["CS101", "CS301"];
-    const ctx = document.getElementById('courseChart');
-    new Chart(ctx, {
-      type: 'doughnut',
-      data: {
-        labels: ['Completed', 'Pending'],
-        datasets: [{ data: [completedCourses.length, registeredCourses.length - completedCourses.length],
-          backgroundColor: ['#3b82f6', '#cbd5e1'] }]
-      },
-      options: { cutout: '65%', plugins: { legend: { display: false } } }
-    });
+    // Example JS for frontend-only demo
+    function loadDashboardData() {
+      // Dummy data for frontend demo
+      const registered = [
+        { course_code: "CS501", course_name: "Artificial Intelligence" },
+        { course_code: "CS502", course_name: "Machine Learning" }
+      ];
+      const completed = [
+        { course_code: "CS500", course_name: "Intro to CS" }
+      ];
+      const pending = [
+        { course_code: "CS503", course_name: "Computer Networks" }
+      ];
+
+      const regList = document.getElementById("registeredList");
+      regList.innerHTML = "";
+      registered.forEach(course => {
+        regList.innerHTML += `<li>${course.course_code} - ${course.course_name}</li>`;
+      });
+
+      const compList = document.getElementById("completedList");
+      compList.innerHTML = "";
+      completed.forEach(course => {
+        compList.innerHTML += `<li>${course.course_code} - ${course.course_name}</li>`;
+      });
+
+      const completedCount = completed.length;
+      const registeredCount = registered.length;
+      const pendingCount = pending.length;
+
+      const ctx = document.getElementById('courseChart');
+      new Chart(ctx, {
+        type: 'doughnut',
+        data: {
+          labels: ['Completed', 'Pending', 'Approved'],
+          datasets: [{
+            data: [completedCount, pendingCount, registeredCount - completedCount],
+            backgroundColor: ['#3b82f6', '#fbbf24', '#94a3b8']
+          }]
+        },
+        options: {
+          cutout: '65%',
+          plugins: { legend: { display: false } }
+        }
+      });
+    }
+
+    document.addEventListener("DOMContentLoaded", loadDashboardData);
 
     function submitToAdvisor() {
       const course = document.getElementById("courseSelect").value;
       const msg = document.getElementById("message");
-      if (!course) {
-        msg.textContent = " Please select a course to submit.";
+      if(!course){
+        msg.textContent = "Please select a course to submit.";
         msg.className = "text-red-600 font-semibold mt-4";
         return;
       }
-      msg.textContent = ` Request for "${course}" sent to Advisor for approval.`;
+      msg.textContent = `Request for "${course}" sent to Advisor for approval.`;
       msg.className = "text-green-600 font-semibold mt-4";
     }
   </script>
