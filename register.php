@@ -44,12 +44,17 @@
 
       <!-- Student Fields -->
       <div id="studentFields" class="hidden space-y-4">
+        
         <div>
-          <label class="block font-semibold mb-1">Major</label>
-          <input type="text" name="major" placeholder="Enter your major" class="input input-bordered w-full" />
-        </div>
-        <div>
-          <label class="block font-semibold mb-1">Year</label>
+          <select name="department" class="select select-bordered w-full  mb-1"">
+            <option value="" disabled selected>Select Department</option>
+            <option>CSE</option>
+            <option>CIVIL</option>
+            <option>TEXTILE</option>
+            <option>EEE</option>
+          </select>
+
+
           <select name="year" class="select select-bordered w-full">
             <option value="" disabled selected>Select year</option>
             <option>1st Year</option>
@@ -62,10 +67,13 @@
 
       <!-- Advisor Fields -->
       <div id="advisorFields" class="hidden space-y-4">
-        <div>
-          <label class="block font-semibold mb-1">Department</label>
-          <input type="text" name="department" placeholder="Enter your department" class="input input-bordered w-full" />
-        </div>
+        <select name="department" class="select select-bordered w-full">
+            <option value="" disabled selected>Select Department</option>
+            <option>CSE</option>
+            <option>CIVIL</option>
+            <option>TEXTILE</option>
+            <option>EEE</option>
+          </select>
       </div>
 
       <button type="submit" class="btn btn-primary w-full mt-4">Register</button>

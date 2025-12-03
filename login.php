@@ -18,13 +18,13 @@
   <nav class="bg-blue-600 text-white p-4 flex justify-between items-center shadow-md">
     <div class="font-bold text-2xl tracking-wide">CRAMS</div>
     <div class="flex space-x-6 text-sm md:text-base">
-      <a href="index.html" class="hover:text-gray-300">Home</a>
-      <a href="advisor.html" class="hover:text-gray-300">Advisor</a>
-      <a href="courses.html" class="hover:text-gray-300">Courses</a>
+      <a href="index.php" class="hover:text-gray-300">Home</a>
+      <a href="advisor.php" class="hover:text-gray-300">Advisor</a>
+      <a href="courses.php" class="hover:text-gray-300">Courses</a>
     </div>
     <div class="flex space-x-4 text-sm md:text-base">
-      <a href="login.html" class="hover:text-gray-300 font-semibold underline">Login</a>
-      <a href="register.html" class="hover:text-gray-300">Register</a>
+      <a href="login.php" class="hover:text-gray-300 font-semibold underline">Login</a>
+      <a href="register.php" class="hover:text-gray-300">Register</a>
     </div>
   </nav>
 
@@ -53,24 +53,5 @@
       </p>
     </div>
   </div>
-
-  <!--  Script -->
-  <!-- <script>
-    function loginUser(e) {
-      e.preventDefault();
-      const id = document.getElementById("userid").value.toLowerCase();
-
-      if (id.startsWith("student")) {
-        window.location.href = "student.html";
-      } else if (id.startsWith("advisor")) {
-        window.location.href = "advisor.html";
-      } else if (id.startsWith("admin")) {
-        window.location.href = "admin.html";
-      } else {
-        alert("Invalid ID. Use: student1, advisor1, or admin1");
-      }
-    }
-  </script> -->
-
 </body>
 </html>

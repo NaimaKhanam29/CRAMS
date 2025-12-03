@@ -1,5 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE php>
+<php lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,13 +14,13 @@
   <nav class="bg-blue-600 text-white p-4 flex justify-between items-center shadow-md">
     <div class="font-bold text-2xl tracking-wide">CRAMS</div>
     <div class="hidden md:flex space-x-6 text-sm md:text-base">
-      <a href="index.html" class="hover:text-gray-200">Home</a>
-      <a href="student.html" class="hover:text-gray-200 underline font-semibold">Student</a>
-      <a href="advisor.html" class="hover:text-gray-200">Advisor</a>
-      <a href="courses.html" class="hover:text-gray-200">Courses</a>
+      <a href="index.php" class="hover:text-gray-200">Home</a>
+      <a href="student.php" class="hover:text-gray-200 underline font-semibold">Student</a>
+      <a href="advisor.php" class="hover:text-gray-200">Advisor</a>
+      <a href="courses.php" class="hover:text-gray-200">Courses</a>
     </div>
     <div>
-      <a href="logout.html" class="btn btn-sm bg-red-500 border-none">Logout</a>
+      <a href="php/logout.php" class="btn btn-sm bg-red-500 border-none">Logout</a>
     </div>
   </nav>
 
@@ -33,6 +33,7 @@
         <h3 class="text-lg font-bold mb-3 text-blue-700">Registered Courses</h3>
         <ul id="registeredList" class="list-disc list-inside text-gray-700">
           <!-- Dynamic content will load here -->
+           hello
         </ul>
       </div>
 
@@ -74,9 +75,9 @@
       <div>
         <h4 class="text-lg font-semibold mb-3">Quick Links</h4>
         <ul class="space-y-2 text-sm">
-          <li><a href="student.html" class="hover:underline hover:text-gray-200">Student Dashboard</a></li>
-          <li><a href="advisor.html" class="hover:underline hover:text-gray-200">Advisor Panel</a></li>
-          <li><a href="courses.html" class="hover:underline hover:text-gray-200">Available Courses</a></li>
+          <li><a href="student.php" class="hover:underline hover:text-gray-200">Student Dashboard</a></li>
+          <li><a href="advisor.php" class="hover:underline hover:text-gray-200">Advisor Panel</a></li>
+          <li><a href="courses.php" class="hover:underline hover:text-gray-200">Available Courses</a></li>
         </ul>
       </div>
       <div>
@@ -107,15 +108,15 @@
       ];
 
       const regList = document.getElementById("registeredList");
-      regList.innerHTML = "";
+      regList.innerphp = "";
       registered.forEach(course => {
-        regList.innerHTML += `<li>${course.course_code} - ${course.course_name}</li>`;
+        regList.innerphp += `<li>${course.course_code} - ${course.course_name}</li>`;
       });
 
       const compList = document.getElementById("completedList");
-      compList.innerHTML = "";
+      compList.innerphp = "";
       completed.forEach(course => {
-        compList.innerHTML += `<li>${course.course_code} - ${course.course_name}</li>`;
+        compList.innerphp += `<li>${course.course_code} - ${course.course_name}</li>`;
       });
 
       const completedCount = completed.length;
@@ -155,4 +156,4 @@
   </script>
 
 </body>
-</html>
+</php>

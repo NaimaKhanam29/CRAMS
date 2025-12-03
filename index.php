@@ -1,8 +1,8 @@
 <?php
     require 'php/dbFiles/database_connection.php';
 ?>
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE php>
+<php lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -19,14 +19,14 @@
     <div class="font-bold text-2xl tracking-wide">CRAMS</div>
 
     <div class="hidden md:flex space-x-6 text-sm md:text-base">
-      <a href="student.html" class="hover:text-gray-300">Student</a>
-      <a href="advisor.html" class="hover:text-gray-300">Advisor</a>
-      <a href="courses.html" class="hover:text-gray-300">Courses</a>
+      <a href="student.php" class="hover:text-gray-300">Student</a>
+      <a href="advisor.php" class="hover:text-gray-300">Advisor</a>
+      <a href="courses.php" class="hover:text-gray-300">Courses</a>
     </div>
 
     <div class="flex space-x-4 text-sm md:text-base">
       <a href="login.php" class="hover:text-gray-300 font-semibold">Login</a>
-      <a href="register.html" class="hover:text-gray-300">Register</a>
+      <a href="register.php" class="hover:text-gray-300">Register</a>
     </div>
   </nav>
 
@@ -37,7 +37,7 @@
       Course Registration and Advising Management System — simplifying student, advisor, and course coordination for a smooth academic experience.
     </p>
     <!-- Button now opens Register page -->
-    <a href="register.html" class="btn btn-primary text-lg px-10">Get Started</a>
+    <a href="register.php" class="btn btn-primary text-lg px-10">Get Started</a>
   </main>
 
   <!--  Footer -->
@@ -56,9 +56,9 @@
       <div>
         <h4 class="text-lg font-semibold mb-3">Quick Links</h4>
         <ul class="space-y-2 text-sm">
-          <li><a href="student.html" class="hover:underline hover:text-gray-200">Student Dashboard</a></li>
-          <li><a href="advisor.html" class="hover:underline hover:text-gray-200">Advisor Panel</a></li>
-          <li><a href="courses.html" class="hover:underline hover:text-gray-200">Available Courses</a></li>
+          <li><a href="student.php" class="hover:underline hover:text-gray-200">Student Dashboard</a></li>
+          <li><a href="advisor.php" class="hover:underline hover:text-gray-200">Advisor Panel</a></li>
+          <li><a href="courses.php" class="hover:underline hover:text-gray-200">Available Courses</a></li>
         </ul>
       </div>
 
@@ -78,4 +78,4 @@
   </footer>
 
 </body>
-</html>
+</php>

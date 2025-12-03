@@ -1,52 +1,73 @@
 <?php
-header('Content-Type: application/json');
+        header("Content-Type: application/json");
 
-require_once __DIR__ . '/dbFiles/database_connection.php';
+        require 'dbFiles/database_connection.php';
 
-// Retrieve POST data
-$name = $_POST['name'] ?? '';
-$email = $_POST['email'] ?? '';
-$password = $_POST['password'] ?? '';
-$role = $_POST['role'] ?? '';
-$major = $_POST['major'] ?? null;
-$year = $_POST['year'] ?? null;
-$department = $_POST['department'] ?? null;
+        if ($_SERVER["REQUEST_METHOD"] !== "POST") {
+            echo json_encode(["success" => false, "message" => "Invalid request"]);
+            exit;
+        }
 
-if (empty($name) || empty($email) || empty($password) || empty($role)) {
-    echo json_encode(["success" => false, "message" => "All fields are required."]);
-    exit;
-}
+        $name       = trim($_POST['name'] ?? '');
+        $email      = trim($_POST['email'] ?? '');
+        $password   = trim($_POST['password'] ?? '');
+        $role       = trim($_POST['role'] ?? '');
+        $year       = trim($_POST['year'] ?? null);
+        $department = trim($_POST['department'] ?? null);
 
-// Check if email already exists (DB column is Email with capital E)
-$stmt = $conn->prepare("SELECT userId FROM users WHERE Email = ?");
-$stmt->bind_param("s", $email);
-$stmt->execute();
-$stmt->store_result();
+        if ($name === "" || $email === "" || $password === "" || $role === "" || $department === "") {
+            echo json_encode(["success" => false, "message" => "Please fill all required fields"]);
+            exit;
+        }
 
-if ($stmt->num_rows > 0) {
-    echo json_encode(["success" => false, "message" => "Email already exists."]);
-    exit;
-}
+        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            echo json_encode(["success" => false, "message" => "Invalid email"]);
+            exit;
+        }
 
-$stmt->close();
+        $hash = password_hash($password, PASSWORD_BCRYPT);
 
-// Hash password (DB column name is password)
-$hashed_password = password_hash($password, PASSWORD_DEFAULT);
+        // Check if email already exists
+        $check = $conn->prepare("SELECT userId FROM users WHERE Email = ?");
+        $check->bind_param("s", $email);
+        $check->execute();
+        $res = $check->get_result();
 
-// Correct INSERT query
-$stmt = $conn->prepare("
-    INSERT INTO users (name, Email, password, role, major, year, department)
-    VALUES (?, ?, ?, ?, ?, ?, ?)
-");
+        if ($res->num_rows > 0) {
+            echo json_encode(["success" => false, "message" => "Email already exists"]);
+            exit;
+        }
+        $check->close();
 
-$stmt->bind_param("sssssss", $name, $email, $hashed_password, $role, $major, $year, $department);
+        // Insert user without 'major'
+        $query = "
+            INSERT INTO users (name, Email, password, role, year, department)
+            VALUES (?, ?, ?, ?, ?, ?)
+        ";
 
-if ($stmt->execute()) {
-    echo json_encode(["success" => true, "message" => "Registration successful!"]);
-} else {
-    echo json_encode(["success" => false, "message" => "Error: " . $stmt->error]);
-}
+        $stmt = $conn->prepare($query);
+        $stmt->bind_param(
+            "ssssss",
+            $name,
+            $email,
+            $hash,
+            $role,
+            $year,
+            $department
+        );
 
-$stmt->close();
-$conn->close();
+        if ($stmt->execute()) {
+            echo json_encode([
+                "success" => true,
+                "message" => "User registered successfully!"
+            ]);
+        } else {
+            echo json_encode([
+                "success" => false,
+                "message" => "Database error: " . $stmt->error
+            ]);
+        }
+
+        $stmt->close();
+        $conn->close();
 ?>
